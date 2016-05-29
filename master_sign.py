@@ -1,5 +1,7 @@
 import os
-
+from Crypto.Signature import PKCS1_v1_5
+from Crypto.Hash import SHA256
+from Crypto.PublicKey import RSA
 
 def sign_file(f):
     # Generating a RSA key of length 2048 bits.
