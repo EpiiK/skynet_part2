@@ -2,9 +2,14 @@ import os
 
 
 def sign_file(f):
-    # TODO: For Part 2, you'll use public key crypto here
-    # The existing scheme just ensures the updates start with the line 'Caesar'
-    # This is naive -- replace it with something better!
+    # Generating a RSA key of length 2048 bits.
+    key = RSA.generate(2048, e=65537)
+    # Generating the new hash to be added to the signature.
+    h = SHA256.new(f)
+    # Creating a new signature scheme which will be used to perform the signature verification.
+    signer = PKCS1_v1_5.new(key)
+    # Signing the file using the signature scheme generated before.
+    signature = signer.sign(h)
     return bytes("Caesar\n", "ascii") + f
 
 
