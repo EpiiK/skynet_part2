@@ -3,12 +3,6 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Hash import SHA256
 
-#function to generate and return public key
-def pubkey_gen():
-    
-#function to generate and return private key
-def privkey_gen():
-    
     
 #encrypt the msg which takes the public key and returns ciphertext
 def encrypt_valuables(m):
