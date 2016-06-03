@@ -21,7 +21,12 @@ def encrypt_valuables(m):
     ciphertext = cipher.encrypt(h.digest())
 
 def decrypt_valuables(f):
-    
+    #import private key half
+    privkey = RSA.importKey(open('privkey.der').read())
+    #use same scheme but with private key
+    cipher = PKCS1_OAEP.new(privkey)
+    #f is the ciphertext
+    msg = cipher.decrypt(f)
 
 
 if __name__ == "__main__":
