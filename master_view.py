@@ -9,9 +9,8 @@ def pubkey_gen():
 #function to generate and return private key
 def privkey_gen():
     
-#encrypt the msg which takes the public key and returns ciphertext
-def encrypt_valuables(pubkey, m):
     
+#encrypt the msg which takes the public key and returns ciphertext
 def encrypt_valuables(m):
     #hash the msg to fix length
     h = SHA256.new(m)
