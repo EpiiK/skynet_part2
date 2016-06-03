@@ -9,7 +9,7 @@ def pubkey_gen():
 def privkey_gen():
     
 #encrypt the msg which takes the public key and returns ciphertext
-def encrypt_valuables(pubkey):
+def encrypt_valuables(pubkey, m):
     
 
 def decrypt_valuables(f):
