@@ -3,17 +3,6 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Hash import SHA256
 
-    
-#encrypt the msg which takes the public key and returns ciphertext
-def encrypt_valuables(m):
-    #hash the msg to fix length
-    h = SHA256.new(m)
-    #imports public key half encoded in standard form
-    pubkey = RSA.importKey(open('pubkey.der').read())
-    #using the public key to encrypt the hashed msg
-    cipher = PKCS1_OAEP.new(pubkey)
-    ciphertext = cipher.encrypt(h.digest())
-
 def decrypt_valuables(f):
     #import private key half
     privkey = RSA.importKey(open('privkey.der').read())
