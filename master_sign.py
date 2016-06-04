@@ -5,14 +5,14 @@ from Crypto.PublicKey import RSA
 
 def sign_file(f):
     # Generating a RSA key of length 2048 bits.
-    key = RSA.generate(2048, e=65537)
+    pubkey = RSA.importKey(open('pubkey.der').read())
     # Generating the new hash to be added to the signature.
-    h = SHA256.new(f)
+    hash = SHA256.new(f)
     # Creating a new signature scheme which will be used to perform the signature verification.
-    signer = PKCS1_v1_5.new(key)
+    signer = PKCS1_v1_5.new(pubkey)
     # Signing the file using the signature scheme generated before.
     signature = signer.sign(h)
-    return bytes("Caesar\n", "ascii") + f
+    return bytes(pubkey, "ascii") + f
 
 
 if __name__ == "__main__":
