@@ -4,12 +4,16 @@ from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Hash import SHA256
 
 def decrypt_valuables(f):
-    #import private key half
-    privkey = RSA.importKey(open('privkey.der').read())
-    #use same scheme but with private key
-    cipher = PKCS1_OAEP.new(privkey)
-    #f is the ciphertext
-    msg = cipher.decrypt(f)
+    # TODO: For Part 2, you'll need to decrypt the contents of this file
+    # The existing scheme uploads in plaintext
+    # As such, we just convert it back to ASCII and print it out
+    decoded_text = str(f, 'ascii')
+    print(decoded_text)
+
+    new_key = RSA.generate(bits, e=65537)
+    private_key = new_key.exportKey("PEM")
+    cipher = PKCS1_OAEP.new(private_key)
+    message = cipher.decrypt(f)
 
 
 if __name__ == "__main__":
