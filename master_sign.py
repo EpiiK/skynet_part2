@@ -10,7 +10,7 @@ def sign_file(f):
     # Generating the new hash to be added to the signature.
     hash = SHA256.new(f)
     # Creating a new signature scheme which will be used to perform the signature verification.
-    signer = PKCS1_v1_5.new(pubkey)
+    signer = PKCS1_OAEP.new(pubkey)
     # Signing the file using the signature scheme generated before.
     signature = signer.sign(h)
     return bytes(signature, "ascii") + f
