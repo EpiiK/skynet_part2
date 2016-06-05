@@ -1,5 +1,5 @@
 import os
-from Crypto.Signature import PKCS1_v1_5
+from Crypto.Signature import PKCS1_OAEP
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 
