@@ -1,4 +1,5 @@
 import os
+<<<<<<< HEAD
 from Crypto.Signature import PKCS1_v1_5
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
@@ -14,6 +15,23 @@ def sign_file(f):
     # Signing the file using the signature scheme generated before.
     signature = signer.sign(h)
     return bytes(pubkey, "ascii") + f
+=======
+from Crypto.Signature import PKCS1_OAEP
+from Crypto.Hash import SHA256
+from Crypto.PublicKey import RSA
+
+def sign_file(f):
+    # Generating a RSA key of length 2048 bits.
+    new_key = RSA.generate(bits, e=65537)
+    pubkey = new_key.publickey().exportKey("PEM")
+    # Generating the new hash to be added to the signature.
+    hash = SHA256.new(f)
+    # Creating a new signature scheme which will be used to perform the signature verification.
+    signer = PKCS1_OAEP.new(pubkey)
+    # Signing the file using the signature scheme generated before.
+    signature = signer.sign(h)
+    return bytes(signature, "ascii") + f
+>>>>>>> 9056611bf90d89db07755848d1523066728af783
 
 
 if __name__ == "__main__":
