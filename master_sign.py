@@ -1,11 +1,19 @@
 import os
+from Crypto.Signature import PKCS1_v1_5
+from Crypto.Hash import SHA256
+from Crypto.PublicKey import RSA
 
 
 def sign_file(f):
-    # TODO: For Part 2, you'll use public key crypto here
-    # The existing scheme just ensures the updates start with the line 'Caesar'
-    # This is naive -- replace it with something better!
-    return bytes("Caesar\n", "ascii") + f
+    # Generating a RSA key of length 2048 bits.
+    pubkey = RSA.importKey(open('pubkey.der').read())
+    # Generating the new hash to be added to the signature.
+    h = SHA256.new(f)
+    # Creating a new signature scheme which will be used to perform the signature verification.
+    signer = PKCS1_v1_5.new(pubkey)
+    # Signing the file using the signature scheme generated before.
+    signature = signer.sign(h)
+    return bytes(pubkey, "ascii") + f
 
 
 if __name__ == "__main__":
